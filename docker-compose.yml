@@ -1,0 +1,30 @@
+version: '3'
+services: 
+
+  web:
+
+      build: ./web/
+      container_name: great
+      volumes: 
+      - ../:/code
+      - ../static:/code/static
+      - ../media:/code/media
+      expose: 
+        - 8080
+      command: bash -c "python manage.py collectstatic --no-input && gunicorn --workers=3 mebrbots.wsgi -b 0.0.0.0:8080"
+
+  nginx:
+      restart: always
+      build: ./nginx/
+      volumes: 
+        - ./nginx/:/etc/nginx/conf.d
+        - ./logs/:/code/logs
+        - ../static:/code/static
+        - ../media:/code/media
+      ports: 
+        - "80:80"
+      links:
+        - web  
+volumes: 
+  media:
+  static:  
