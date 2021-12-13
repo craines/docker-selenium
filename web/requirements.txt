@@ -8,7 +8,7 @@ djangorestframework==3.11.0
 fake-useragent==0.1.11     
 html5lib==1.0.1
 idna==2.8
-lxml==4.5.0
+lxml==4.6.5
 Markdown==3.2.1
 python-anticaptcha==0.4.1  
 pytz==2019.3
